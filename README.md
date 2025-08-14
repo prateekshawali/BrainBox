@@ -1,60 +1,71 @@
-# 🧠 BrainBox Role-Based Access System
+# 🧠 BrainBox - Knowledge Management System
 
-This project demonstrates a **Role-Based Access Control (RBAC)** implementation using **Spring Boot**, **Spring Security**, and **MySQL**. It supports multiple user roles with different levels of access to an **Article Management System**.
+BrainBox is a modern article management platform with comprehensive role-based access control that enables organizations to collaborate securely on knowledge sharing and content management.
 
-## 🗂️ Project Structure
+## 🚀 Features
 
-- **Java Backend**: Developed using Spring Boot.
-- **MySQL Database**: Stores users, roles, articles, and their relationships.
-- **Spring Security**: Configured with `JdbcUserDetailsManager` to authenticate users and authorize them based on roles.
+- **Advanced Role-Based Access Control**: Granular permissions based on user roles
+- **Article Management System**: Create, edit, review, approve, and publish articles
+- **Searchable Interface**: Fast, client-side search functionality across all content
+- **Responsive Dashboard**: Role-specific dashboards with relevant information
+- **Secure Authentication**: Spring Security integration with BCrypt password encryption
+
+## 🛡️ Role Hierarchy
+
+| Role        | Permissions                                                    |
+|-------------|---------------------------------------------------------------|
+| **Admin**   | Full system access with user management and article control    |
+| **Editor**  | Edit any articles and review contributor submissions           |
+| **Contributor** | Create and edit their own articles before approval         |
+| **Reviewer**| Approve or reject submitted articles                           |
+| **Viewer**  | Read-only access to approved articles                          |
+
+## 🔧 Technical Stack
+
+- **Backend**: Java with Spring Boot 3.x
+- **Security**: Spring Security with JWT authentication
+- **Database**: H2 (development) / MySQL (production)
+- **Frontend**: Thymeleaf templates with Bootstrap and JavaScript
+- **Build Tool**: Maven
+
+## 🏃‍♂️ Quick Start
+
+1. Clone the repository
+2. Configure the database in `application.properties`
+3. Run using `./mvnw spring-boot:run`
+4. Access the application at `http://localhost:8080`
+5. Login with:
+   - Admin: username `john` / password `password123`
+   - Contributor: username `contributor_1` / password `password123`
+
+## 📝 Usage
+
+The system features different dashboards for each role:
+
+- **Admin Dashboard**: Complete management console with user administration
+- **Editor Dashboard**: Article review queue with editing capabilities
+- **Contributor Dashboard**: Content creation and submission workflow
+- **Reviewer Dashboard**: Approval interface for submitted content
+- **Viewer Dashboard**: Clean reading interface for approved articles
+
+## 💻 Development
+
+### Database Schema
+The application uses a normalized database schema with the following core tables:
+- `users` - User accounts and authentication details
+- `role` - Available system roles
+- `user_roles` - Many-to-many mapping between users and roles
+- `article` - Content with metadata and approval status
+
+### Search Implementation
+The search functionality is implemented client-side using JavaScript to provide:
+- Real-time filtering of articles and content
+- Multi-field search across titles and content
+- Role-appropriate search results
+
+## 📄 License
+MIT License
 
 ---
 
-## 🛡️ User Roles & Permissions
-
-| Role        | Permissions                                                                 |
-|-------------|------------------------------------------------------------------------------|
-| **Admin**   | 🔄 Edit all articles<br>🗑️ Delete any article<br>✅ Approve articles<br>👥 Assign roles |
-| **Editor**  | ✏️ Edit assigned articles<br>📝 Review contributor drafts                     |
-| **Contributor** | ✍️ Create articles<br>🔄 Edit own articles (before approval)              |
-| **Reviewer**| ✅ Approve/Reject submitted articles                                          |
-| **Viewer**  | 👀 Read articles only                                                        |
-
-> A user can have multiple roles (e.g., John is Admin + Editor + Contributor + Reviewer + Viewer).
-
----
-
-## 🧑‍💻 Database Schema
-
-### Tables
-
-- `user` - Stores user credentials (`id`, `username`, `password`)
-- `role` - Defines roles (`id`, `name`)
-- `user_roles` - Maps users to roles (`user_id`, `role_id`)
-- `article` - Stores articles (`id`, `title`, `content`, `author_id`, `status`)
-
-### Sample Data
-
-#### Users
-
-| ID | Username | Role(s)          |
-|----|----------|------------------|
-| 1  | john     | Admin (All roles)|
-| 2  | alice    | Reviewer         |
-| 3  | bob      | Contributor      |
-| 4  | seema    | Viewer           |
-| 5  | manu     | Editor           |
-
-#### Roles
-
-| ID | Role        |
-|----|-------------|
-| 1  | ADMIN       |
-| 2  | EDITOR      |
-| 3  | CONTRIBUTOR |
-| 4  | REVIEWER    |
-| 5  | VIEWER      |
-
----
-
-
+© 2025 BrainBox Knowledge Management System

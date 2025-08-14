@@ -104,7 +104,53 @@
         .action-buttons a {
             margin-right: 8px;
         }
+        
+        /* Search bar styles */
+        .search-container {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95em;
+            width: 300px;
+            margin-right: 8px;
+        }
+        
+        .search-button {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .search-button:hover {
+            background-color: #2980b9;
+        }
+        
+        .clear-button {
+            background-color: #95a5a6;
+            color: white;
+        }
+        
+        .clear-button:hover {
+            background-color: #7f8c8d;
+        }
+        
+        .no-results {
+            padding: 15px;
+            text-align: center;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            margin: 10px 0;
+            color: #666;
+            font-style: italic;
+            display: none;
+        }
     </style>
+    <script src="/js/search.js"></script>
 </head>
 <body>
 
@@ -118,7 +164,19 @@
 
 <h2>All Articles</h2>
 
-<table>
+<!-- Search bar -->
+<div class="search-container">
+    <input type="text" id="articleSearch" class="search-input" placeholder="Search by title or author..." onkeyup="searchTable('articleSearch', 'articlesTable', [0, 1])">
+    <button class="button search-button" onclick="searchTable('articleSearch', 'articlesTable', [0, 1])">🔍 Search</button>
+    <button class="button clear-button" onclick="clearSearch('articleSearch', 'articlesTable')">Clear</button>
+</div>
+
+<!-- No results message -->
+<div id="articlesTableNoResults" class="no-results">
+    No articles match your search criteria.
+</div>
+
+<table id="articlesTable">
     <thead>
     <tr>
         <th>Title</th>

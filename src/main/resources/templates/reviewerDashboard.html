@@ -37,6 +37,7 @@
       background-color: #f1f3f5;
     }
   </style>
+  <script src="/js/search.js"></script>
 </head>
 <body>
 
@@ -49,9 +50,26 @@
     <p>Welcome, <strong th:text="${#authentication.name}">Reviewer</strong>!</p>
 
     <h4 class="mt-5 mb-3">Pending Articles for Approval</h4>
+    
+    <!-- Search bar -->
+    <div class="mb-3">
+      <div class="input-group">
+        <input type="text" id="articleSearch" class="form-control" placeholder="Search by title, author or content..." 
+               onkeyup="searchTable('articleSearch', 'articlesTable', [0, 1, 2])">
+        <button class="btn btn-outline-secondary" type="button" 
+                onclick="searchTable('articleSearch', 'articlesTable', [0, 1, 2])">🔍</button>
+        <button class="btn btn-outline-secondary" type="button" 
+                onclick="clearSearch('articleSearch', 'articlesTable')">Clear</button>
+      </div>
+    </div>
+    
+    <!-- No results message -->
+    <div id="articlesTableNoResults" class="alert alert-info" style="display:none;">
+      No articles match your search criteria.
+    </div>
 
     <div class="table-responsive">
-      <table class="table table-bordered align-middle">
+      <table id="articlesTable" class="table table-bordered align-middle">
         <thead>
           <tr>
             <th>Title</th>

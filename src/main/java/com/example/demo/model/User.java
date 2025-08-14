@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users") // Changed from "user" to "users" because "user" is a reserved keyword in H2
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

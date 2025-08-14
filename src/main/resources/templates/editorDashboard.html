@@ -37,6 +37,7 @@
       font-weight: 600;
     }
   </style>
+  <script src="/js/search.js"></script>
 </head>
 <body>
   <div class="dashboard">
@@ -47,8 +48,25 @@
     
     <p>Welcome, <span class="username" th:text="${#authentication.name}">Editor</span>!</p>
 
+    <!-- Search bar -->
+    <div class="mb-3">
+      <div class="input-group">
+        <input type="text" id="articleSearch" class="form-control" placeholder="Search by title or author..." 
+               onkeyup="searchTable('articleSearch', 'articlesTable', [0, 1])">
+        <button class="btn btn-outline-secondary" type="button" 
+                onclick="searchTable('articleSearch', 'articlesTable', [0, 1])">🔍</button>
+        <button class="btn btn-outline-secondary" type="button" 
+                onclick="clearSearch('articleSearch', 'articlesTable')">Clear</button>
+      </div>
+    </div>
+    
+    <!-- No results message -->
+    <div id="articlesTableNoResults" class="alert alert-info" style="display:none;">
+      No articles match your search criteria.
+    </div>
+
     <div class="table-responsive">
-      <table class="table table-striped table-hover align-middle">
+      <table id="articlesTable" class="table table-striped table-hover align-middle">
         <thead>
           <tr>
             <th>Title</th>
